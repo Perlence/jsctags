@@ -11,6 +11,7 @@ var ESCAPES = {
 
 var SPECIAL_FIELDS = {
   addr: true,
+  lineno: true,
   kind: true,
   name: true,
   tagfile: true,
@@ -26,7 +27,7 @@ var convert = module.exports = function(tags) {
     }
 
     var buf = [tag.name, '\t', tags.tagfile, '\t'];
-    buf.push(tag.addr !== undefined ? tag.addr : '//');
+    buf.push(tag.lineno !== undefined ? tag.lineno : tag.addr !== undefined ? tag.addr : '//');
     var tagfields = [];
 
     Object.keys(tag).forEach(function(key) {
